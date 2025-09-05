@@ -34,7 +34,7 @@ export default function PortalReferrals() {
 
   const handleInvite = () => {
     if (email.trim()) {
-      (window as any).toast?.(`Invitation sent to ${email}`, {
+      window.toast?.(`Invitation sent to ${email}`, {
         kind: "success",
         title: "Invite Sent",
       });
@@ -45,7 +45,7 @@ export default function PortalReferrals() {
 
   const copyReferralCode = () => {
     navigator.clipboard.writeText(referralCode);
-    (window as any).toast?.("Referral code copied", { kind: "info" });
+    window.toast?.("Referral code copied", { kind: "info", title: "Copy" });
   };
 
   return (
@@ -63,6 +63,7 @@ export default function PortalReferrals() {
 
       {/* Referral Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        {/* Total Referrals */}
         <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-white/20 dark:border-gray-700/50">
           <CardContent className="p-4 sm:p-6 text-center">
             <div className="w-12 h-12 mx-auto rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-3">
@@ -76,7 +77,7 @@ export default function PortalReferrals() {
             </p>
           </CardContent>
         </Card>
-
+        {/* Successful Referrals */}
         <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-white/20 dark:border-gray-700/50">
           <CardContent className="p-4 sm:p-6 text-center">
             <div className="w-12 h-12 mx-auto rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mb-3">
@@ -90,7 +91,7 @@ export default function PortalReferrals() {
             </p>
           </CardContent>
         </Card>
-
+        {/* Total Earned */}
         <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-white/20 dark:border-gray-700/50">
           <CardContent className="p-4 sm:p-6 text-center">
             <div className="w-12 h-12 mx-auto rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mb-3">
@@ -183,7 +184,7 @@ export default function PortalReferrals() {
         </CardContent>
       </Card>
 
-      {/* Referral Rewards Info */}
+      {/* How It Works */}
       <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-white/20 dark:border-gray-700/50">
         <CardHeader className="bg-gradient-to-r from-green-50/50 to-emerald-50/50 dark:from-green-900/20 dark:to-emerald-900/20 border-b border-white/20 dark:border-gray-700/50 p-4 sm:p-6">
           <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
@@ -192,6 +193,7 @@ export default function PortalReferrals() {
         </CardHeader>
         <CardContent className="p-4 sm:p-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Step 1 */}
             <div className="text-center">
               <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-4">
                 <span className="text-white text-2xl">1️⃣</span>
@@ -200,10 +202,10 @@ export default function PortalReferrals() {
                 Share Your Code
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Send your unique referral code to friends via email or social
-                media
+                Send your unique referral code via email or social media.
               </p>
             </div>
+            {/* Step 2 */}
             <div className="text-center">
               <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mb-4">
                 <span className="text-white text-2xl">2️⃣</span>
@@ -212,9 +214,10 @@ export default function PortalReferrals() {
                 Friend Joins
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                When they sign up using your code, both accounts get activated
+                When they sign up using your code, both accounts get activated.
               </p>
             </div>
+            {/* Step 3 */}
             <div className="text-center">
               <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mb-4">
                 <span className="text-white text-2xl">3️⃣</span>
@@ -223,7 +226,7 @@ export default function PortalReferrals() {
                 Earn Rewards
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Both you and your friend receive $25 in platform credits
+                Both you and your friend receive $25 in platform credits.
               </p>
             </div>
           </div>
@@ -238,12 +241,14 @@ export default function PortalReferrals() {
           </h2>
         </CardHeader>
         <CardContent className="p-4 sm:p-6">
+          {/* Referral list */}
           <div className="space-y-3 sm:space-y-4">
             {referralHistory.map((referral) => (
               <div
                 key={referral.id}
                 className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 rounded-lg bg-gradient-to-r from-white/60 to-gray-50/60 dark:from-gray-700/60 dark:to-gray-800/60 backdrop-blur-sm border border-white/30 dark:border-gray-600/50 gap-3 sm:gap-0"
               >
+                {/* Email & Date */}
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                     <span className="text-blue-600 text-xs sm:text-sm">👤</span>
@@ -257,6 +262,7 @@ export default function PortalReferrals() {
                     </p>
                   </div>
                 </div>
+                {/* Status & Reward */}
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                   <span
                     className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${

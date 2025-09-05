@@ -1,4 +1,5 @@
 "use client";
+
 import {
   createContext,
   use,
@@ -57,7 +58,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
         durationMs: Math.max(1500, Math.min(8000, opts?.durationMs ?? 2500)),
       };
       setToasts((prev) => [...prev, toast]);
-      window.setTimeout(() => remove(id), toast.durationMs);
+      // Schedule removal
+      const timeoutId = window.setTimeout(() => remove(id), toast.durationMs);
+      // Cleanup timeout if needed (optional)
+      return () => clearTimeout(timeoutId);
     },
     [remove]
   );
@@ -74,12 +78,14 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   return (
     <ToastContext.Provider value={value}>
       {children}
-      <div className="fixed top-5 right-5 z-[60] flex flex-col gap-2 w-[calc(100%-2rem)] max-w-sm items-end">
+      {/* Toast container */}
+      <div className="fixed top-5 right-5 z-[60] flex flex-col gap-2 w-[calc(100%-2rem)] max-w-sm items-end px-2">
         {toasts.map((t) => (
           <div
             key={t.id}
             role="status"
-            className={`rounded-xl p-3 shadow-2xl border backdrop-blur-md text-sm will-change-transform
+            aria-live="polite"
+            className={`rounded-xl p-3 shadow-2xl border backdrop-blur-md text-sm will-change-transform transition-transform duration-300
               ${
                 t.kind === "success"
                   ? "bg-emerald-600/90 text-white border-emerald-400/50"
@@ -107,6 +113,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
           </div>
         ))}
       </div>
+      {/* Keyframes for slideIn animation */}
       <style jsx>{`
         @keyframes slideIn {
           from {

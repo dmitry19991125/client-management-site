@@ -65,10 +65,11 @@ export default function AdminCustomers() {
             Manage your clients and their subscriptions
           </p>
         </div>
+        {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-3">
           <Button
             onClick={() =>
-              (window as any).toast?.("Open add-client modal", {
+              window.toast?.("Open add-client modal", {
                 kind: "info",
                 title: "Add Client",
               })
@@ -80,7 +81,7 @@ export default function AdminCustomers() {
           </Button>
           <Button
             onClick={() =>
-              (window as any).toast?.("Open bulk invite", {
+              window.toast?.("Open bulk invite", {
                 kind: "info",
                 title: "Bulk Invite",
               })
@@ -96,6 +97,7 @@ export default function AdminCustomers() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        {/* Total Clients */}
         <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-white/20 dark:border-gray-700/50">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
@@ -113,7 +115,7 @@ export default function AdminCustomers() {
             </div>
           </CardContent>
         </Card>
-
+        {/* Active */}
         <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-white/20 dark:border-gray-700/50">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
@@ -131,7 +133,7 @@ export default function AdminCustomers() {
             </div>
           </CardContent>
         </Card>
-
+        {/* Pending */}
         <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-white/20 dark:border-gray-700/50">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
@@ -149,7 +151,7 @@ export default function AdminCustomers() {
             </div>
           </CardContent>
         </Card>
-
+        {/* Premium */}
         <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-white/20 dark:border-gray-700/50">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between">
@@ -281,10 +283,10 @@ export default function AdminCustomers() {
                       <div className="flex gap-2">
                         <button
                           onClick={() =>
-                            (window as any).toast?.(
-                              `Editing ${customer.name}`,
-                              { kind: "info" }
-                            )
+                            window.toast?.(`Editing ${customer.name}`, {
+                              kind: "info",
+                              title: "Edit Customer",
+                            })
                           }
                           className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                           title="Edit Customer"
@@ -295,10 +297,10 @@ export default function AdminCustomers() {
                         </button>
                         <button
                           onClick={() =>
-                            (window as any).toast?.(
-                              `Email sent to ${customer.email}`,
-                              { kind: "success", title: "Email" }
-                            )
+                            window.toast?.(`Email sent to ${customer.email}`, {
+                              kind: "success",
+                              title: "Email",
+                            })
                           }
                           className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                           title="Send Email"

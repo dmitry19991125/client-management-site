@@ -79,7 +79,7 @@ export default function AdminUploads() {
         <div className="flex gap-3">
           <Button
             onClick={() =>
-              (window as any).toast?.("Processing all pending uploads...", {
+              window.toast?.("Processing all pending uploads...", {
                 kind: "info",
                 title: "Update All",
               })
@@ -91,7 +91,7 @@ export default function AdminUploads() {
           </Button>
           <Button
             onClick={() =>
-              (window as any).toast?.("Generating comprehensive report...", {
+              window.toast?.("Generating comprehensive report...", {
                 kind: "info",
                 title: "Report",
               })
@@ -107,6 +107,7 @@ export default function AdminUploads() {
 
       {/* Upload Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {/* Total Files */}
         <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 border-blue-200 dark:border-blue-800/30">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -125,6 +126,7 @@ export default function AdminUploads() {
           </CardContent>
         </Card>
 
+        {/* This Week */}
         <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border-green-200 dark:border-green-800/30">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -143,6 +145,7 @@ export default function AdminUploads() {
           </CardContent>
         </Card>
 
+        {/* Total Size */}
         <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 border-purple-200 dark:border-purple-800/30">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -161,6 +164,7 @@ export default function AdminUploads() {
           </CardContent>
         </Card>
 
+        {/* Pending */}
         <Card className="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-amber-800/20 border-amber-200 dark:border-amber-800/30">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -216,8 +220,9 @@ export default function AdminUploads() {
               </div>
               <Button
                 onClick={() =>
-                  (window as any).toast?.("Opening file picker...", {
+                  window.toast?.("Opening file picker...", {
                     kind: "info",
+                    title: "File Picker",
                   })
                 }
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
@@ -227,6 +232,7 @@ export default function AdminUploads() {
             </div>
           </div>
 
+          {/* Assign Files & Update Buttons */}
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -248,7 +254,7 @@ export default function AdminUploads() {
             <div className="flex items-end gap-3">
               <Button
                 onClick={() =>
-                  (window as any).toast?.(
+                  window.toast?.(
                     `Assigned files to ${selectedClient || "selected client"}`,
                     { kind: "success", title: "Assignment" }
                   )
@@ -260,7 +266,7 @@ export default function AdminUploads() {
               </Button>
               <Button
                 onClick={() =>
-                  (window as any).toast?.("Processing uploads now...", {
+                  window.toast?.("Processing uploads now...", {
                     kind: "info",
                     title: "Updating",
                   })
@@ -274,7 +280,7 @@ export default function AdminUploads() {
         </CardContent>
       </Card>
 
-      {/* File List */}
+      {/* Recent Uploads */}
       <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-white/20 dark:border-gray-700/50">
         <CardHeader className="bg-gradient-to-r from-blue-50/50 to-indigo-50/50 dark:from-blue-900/20 dark:to-indigo-900/20 border-b border-white/20 dark:border-gray-700/50 p-4 sm:p-6">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
@@ -377,8 +383,9 @@ export default function AdminUploads() {
                       <div className="flex gap-2">
                         <button
                           onClick={() =>
-                            (window as any).toast?.(`Preview ${file.name}`, {
+                            window.toast?.(`Preview ${file.name}`, {
                               kind: "info",
+                              title: "Preview",
                             })
                           }
                           className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
@@ -388,10 +395,10 @@ export default function AdminUploads() {
                         </button>
                         <button
                           onClick={() =>
-                            (window as any).toast?.(
-                              `Downloading ${file.name}...`,
-                              { kind: "info" }
-                            )
+                            window.toast?.(`Downloading ${file.name}...`, {
+                              kind: "info",
+                              title: "Download",
+                            })
                           }
                           className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                           title="Download File"
@@ -400,7 +407,7 @@ export default function AdminUploads() {
                         </button>
                         <button
                           onClick={() =>
-                            (window as any).toast?.(`Deleted ${file.name}`, {
+                            window.toast?.(`Deleted ${file.name}`, {
                               kind: "warning",
                               title: "Removed",
                             })

@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -48,7 +49,7 @@ export default function AdminMessages() {
       unread: 0,
     },
   ]);
-  const [activeId, setActiveId] = useState(2);
+  const [activeId, setActiveId] = useState<number>(2);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "m1",
@@ -59,11 +60,11 @@ export default function AdminMessages() {
     { id: "m2", from: "admin", text: "Sure, sending it now.", time: "10:05" },
     { id: "m3", from: "customer", text: "Thanks!", time: "10:06" },
   ]);
-  const [input, setInput] = useState("");
-  const [search, setSearch] = useState("");
-  const [showUnreadOnly, setShowUnreadOnly] = useState(false);
-  const [typing, setTyping] = useState(false);
-  const [sending, setSending] = useState(false);
+  const [input, setInput] = useState<string>("");
+  const [search, setSearch] = useState<string>("");
+  const [showUnreadOnly, setShowUnreadOnly] = useState<boolean>(false);
+  const [typing, setTyping] = useState<boolean>(false);
+  const [sending, setSending] = useState<boolean>(false);
   const endRef = useRef<HTMLDivElement | null>(null);
   const uidCounter = useRef<number>(0);
   const uid = () => `${Date.now()}_${uidCounter.current++}`;
@@ -89,7 +90,7 @@ export default function AdminMessages() {
       },
     ]);
     setInput("");
-    (window as any).toast?.("Message sent", { kind: "success" });
+    window.toast?.("Message sent", { kind: "success", title: "Message Sent" });
     setTyping(true);
     setTimeout(() => {
       setMessages((prev) => [
@@ -110,7 +111,7 @@ export default function AdminMessages() {
   };
 
   const warn = () => {
-    (window as any).toast?.("Customer has unread messages", {
+    window.toast?.("Customer has unread messages", {
       kind: "warning",
       title: "Heads up",
     });
@@ -119,7 +120,7 @@ export default function AdminMessages() {
   const markAllRead = () => {
     if (conversations.every((c) => c.unread === 0)) return;
     setConversations((prev) => prev.map((c) => ({ ...c, unread: 0 })));
-    (window as any).toast?.("All conversations marked as read", {
+    window.toast?.("All conversations marked as read", {
       kind: "success",
       title: "All Read",
     });
@@ -137,6 +138,7 @@ export default function AdminMessages() {
 
   return (
     <div className="px-4 sm:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8 bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-slate-900 min-h-screen">
+      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
@@ -146,6 +148,7 @@ export default function AdminMessages() {
             View and reply to customer conversations
           </p>
         </div>
+        {/* Buttons */}
         <div className="flex gap-3">
           <Button
             onClick={warn}
@@ -166,11 +169,13 @@ export default function AdminMessages() {
         </div>
       </div>
 
+      {/* Main Card */}
       <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-white/20 dark:border-gray-700/50">
         <CardContent className="p-0 overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-[340px_1fr] h-[70vh]">
             {/* Sidebar */}
             <div className="border-r border-white/20 dark:border-gray-700/50 p-3 sm:p-4 space-y-2 overflow-y-auto h-full min-h-0 custom-scrollbar">
+              {/* Search */}
               <div className="mb-2 flex items-center gap-2">
                 <input
                   value={search}
@@ -179,46 +184,42 @@ export default function AdminMessages() {
                   className="w-full h-10 px-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
-              {conversations
-                .filter(
-                  (c) =>
-                    c.customer.toLowerCase().includes(search.toLowerCase()) ||
-                    c.email.toLowerCase().includes(search.toLowerCase())
-                )
-                .map((c) => (
-                  <button
-                    key={c.id}
-                    onClick={() => setActiveId(c.id)}
-                    className={`w-full text-left p-3 rounded-xl transition-all border backdrop-blur-sm ${
-                      activeId === c.id
-                        ? "bg-blue-50/80 dark:bg-blue-900/20 border-blue-300 dark:border-blue-700"
-                        : "bg-white/70 dark:bg-gray-800/70 border-white/20 dark:border-gray-700/50 hover:bg-white dark:hover:bg-gray-800"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="font-semibold text-gray-900 dark:text-white">
-                          {c.customer}
-                        </div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400">
-                          {c.email}
-                        </div>
+              {/* Conversation List */}
+              {filteredConversations.map((c) => (
+                <button
+                  key={c.id}
+                  onClick={() => setActiveId(c.id)}
+                  className={`w-full text-left p-3 rounded-xl transition-all border backdrop-blur-sm ${
+                    activeId === c.id
+                      ? "bg-blue-50/80 dark:bg-blue-900/20 border-blue-300 dark:border-blue-700"
+                      : "bg-white/70 dark:bg-gray-800/70 border-white/20 dark:border-gray-700/50 hover:bg-white dark:hover:bg-gray-800"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-semibold text-gray-900 dark:text-white">
+                        {c.customer}
                       </div>
-                      {c.unread > 0 && (
-                        <span className="ml-2 inline-flex items-center justify-center h-6 min-w-6 px-2 rounded-full text-xs font-semibold bg-amber-500/90 text-black shadow">
-                          {c.unread}
-                        </span>
-                      )}
+                      <div className="text-xs text-gray-500 dark:text-gray-400">
+                        {c.email}
+                      </div>
                     </div>
-                    <div className="mt-2 text-sm text-gray-600 dark:text-gray-300 line-clamp-1">
-                      {c.lastMessage}
-                    </div>
-                  </button>
-                ))}
+                    {c.unread > 0 && (
+                      <span className="ml-2 inline-flex items-center justify-center h-6 min-w-6 px-2 rounded-full text-xs font-semibold bg-amber-500/90 text-black shadow">
+                        {c.unread}
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-2 text-sm text-gray-600 dark:text-gray-300 line-clamp-1">
+                    {c.lastMessage}
+                  </div>
+                </button>
+              ))}
             </div>
 
-            {/* Chat */}
+            {/* Chat Area */}
             <div className="flex flex-col h-full min-h-0">
+              {/* Header of chat */}
               <div className="sticky top-0 z-10 flex items-center justify-between p-4 border-b border-white/20 dark:border-gray-700/50 bg-white/80 dark:bg-gray-900/60 backdrop-blur-md">
                 <div>
                   <div className="font-semibold text-gray-900 dark:text-white">
@@ -228,6 +229,7 @@ export default function AdminMessages() {
                     {conversations.find((c) => c.id === activeId)?.email}
                   </div>
                 </div>
+                {/* Quick actions */}
                 <div className="flex gap-2">
                   <Button
                     onClick={() =>
@@ -271,17 +273,21 @@ export default function AdminMessages() {
                   </Button>
                 </div>
               </div>
+
+              {/* Messages */}
               <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-4 space-y-3 custom-scrollbar">
                 {messages.map((m, idx) => {
                   const prev = messages[idx - 1];
                   const showAvatar = true;
-                  // Count previous consecutive messages by the same sender
+
+                  // Count previous consecutive messages by same sender
                   let consecutiveCount = 0;
                   for (let j = idx - 1; j >= 0; j--) {
                     if (messages[j].from === m.from) consecutiveCount++;
                     else break;
                   }
-                  const showLabel = showAvatar || consecutiveCount >= 2; // from the 3rd in a row onward
+                  const showLabel = showAvatar || consecutiveCount >= 2;
+
                   const initials =
                     m.from === "admin"
                       ? "AD"
@@ -292,6 +298,7 @@ export default function AdminMessages() {
                           .split(" ")
                           .map((n) => n[0])
                           .join("");
+
                   return (
                     <div
                       key={m.id}
@@ -347,6 +354,7 @@ export default function AdminMessages() {
                     </div>
                   );
                 })}
+
                 {typing && (
                   <div className="flex justify-start">
                     <div className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/90 dark:bg-gray-800/90 border border-white/20 dark:border-gray-700/50 text-xs text-gray-500 dark:text-gray-300">
@@ -355,9 +363,11 @@ export default function AdminMessages() {
                     </div>
                   </div>
                 )}
+
                 <div ref={endRef} />
               </div>
 
+              {/* Input area */}
               <div className="sticky bottom-0 z-10 border-t border-white/20 dark:border-gray-700/50 p-3 sm:p-4 bg-white/80 dark:bg-gray-900/60 backdrop-blur-md">
                 <div className="flex items-center gap-2">
                   <input
