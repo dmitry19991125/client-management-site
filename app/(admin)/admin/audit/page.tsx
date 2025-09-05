@@ -382,6 +382,7 @@ export default function AdminAudit() {
                           onClick={() =>
                             window.toast?.(`Viewing details for #${log.id}`, {
                               kind: "info",
+                              title: "View Details",
                             })
                           }
                           className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
@@ -396,6 +397,7 @@ export default function AdminAudit() {
                           onClick={() =>
                             window.toast?.("Copied details", {
                               kind: "success",
+                              title: "Copy Details",
                             })
                           }
                           className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
