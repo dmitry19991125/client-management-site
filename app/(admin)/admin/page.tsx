@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent, CardHeader } from "@/components/ui/Card";
 import {
   IconUsers,
@@ -156,7 +158,9 @@ export default function AdminDashboard() {
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
               <button className="p-3 sm:p-4 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition-all duration-200 text-center shadow-lg hover:shadow-xl transform hover:scale-105">
                 <div className="text-xl sm:text-2xl mb-2">👤</div>
-                <div className="text-xs sm:text-sm font-medium">{t("admin.add.client")}</div>
+                <div className="text-xs sm:text-sm font-medium">
+                  {t("admin.add.client")}
+                </div>
               </button>
               <button className="p-3 sm:p-4 rounded-xl bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 transition-all duration-200 text-center shadow-lg hover:shadow-xl transform hover:scale-105">
                 <div className="text-xl sm:text-2xl mb-2">📊</div>
@@ -172,7 +176,9 @@ export default function AdminDashboard() {
               </button>
               <button className="p-3 sm:p-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-white hover:from-amber-600 hover:to-amber-700 transition-all duration-200 text-center shadow-lg hover:shadow-xl transform hover:scale-105">
                 <div className="text-xl sm:text-2xl mb-2">📈</div>
-                <div className="text-xs sm:text-sm font-medium">{t("admin.analytics")}</div>
+                <div className="text-xs sm:text-sm font-medium">
+                  {t("admin.analytics")}
+                </div>
               </button>
             </div>
           </CardContent>
