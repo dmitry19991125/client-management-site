@@ -149,10 +149,10 @@ export default function PortalDashboard() {
   return (
     <div className="mx-auto max-w-[1440px] px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 py-3 xs:py-4 sm:py-6 md:py-8 lg:py-10 space-y-3 xs:space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-slate-900 min-h-screen">
       {/* Enhanced Hero Section */}
-      <div className="relative overflow-hidden rounded-2xl xs:rounded-3xl bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 p-4 xs:p-6 sm:p-8 md:p-10 lg:p-12 text-white shadow-2xl">
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-indigo-600/20"></div>
-        <div className="relative z-10">
+      <div className=" overflow-hidden rounded-2xl xs:rounded-3xl bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 p-4 xs:p-6 sm:p-8 md:p-10 lg:p-12 text-white shadow-2xl">
+        <div className=" inset-0 bg-black/10"></div>
+        <div className=" inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-indigo-600/20"></div>
+        <div className="relative">
           <div className="flex items-center justify-between">
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 xs:gap-3 sm:gap-4 md:gap-5 lg:gap-6">
@@ -353,7 +353,7 @@ export default function PortalDashboard() {
               {[
                 { id: "overview", label: t("portal.overview") },
                 { id: "detailed", label: t("portal.detailed") },
-                { id: "comparison", label: t("portal.comparison") }
+                { id: "comparison", label: t("portal.comparison") },
               ].map((tab) => (
                 <button
                   key={tab.id}
