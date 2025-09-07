@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { LastUpdated } from "@/components/LastUpdated";
 import { ChartPreview } from "@/components/ChartPreview";
 import { Card, CardContent, CardHeader } from "@/components/ui/Card";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   IconDownload,
   IconMessageCircle,
@@ -20,6 +21,7 @@ export default function PortalDashboard() {
   const [growthRate, setGrowthRate] = useState(12.5);
   const [activeAction, setActiveAction] = useState<number | null>(null);
   const router = useRouter();
+  const { t } = useLanguage();
 
   const chartConfig = {
     labels: [
@@ -60,22 +62,22 @@ export default function PortalDashboard() {
   const quickActions = [
     {
       icon: IconDownload,
-      label: "View Reports",
+      label: t("portal.view.reports"),
       href: "/portal",
     },
     {
       icon: IconMessageCircle,
-      label: "Chat Support",
+      label: t("portal.chat.support"),
       href: "/portal/chat",
     },
     {
       icon: IconCreditCard,
-      label: "Make Payment",
+      label: t("portal.make.payment"),
       href: "/portal/payments",
     },
     {
       icon: IconEye,
-      label: "Performance",
+      label: t("portal.performance"),
       href: "/portal",
     },
   ] as const;
@@ -145,37 +147,37 @@ export default function PortalDashboard() {
   };
 
   return (
-    <div className="mx-auto max-w-[1440px] px-4 sm:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-slate-900 min-h-screen">
+    <div className="mx-auto max-w-[1440px] px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 py-3 xs:py-4 sm:py-6 md:py-8 lg:py-10 space-y-3 xs:space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-slate-900 min-h-screen">
       {/* Enhanced Hero Section */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 p-8 text-white shadow-2xl">
+      <div className="relative overflow-hidden rounded-2xl xs:rounded-3xl bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 p-4 xs:p-6 sm:p-8 md:p-10 lg:p-12 text-white shadow-2xl">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-indigo-600/20"></div>
         <div className="relative z-10">
           <div className="flex items-center justify-between">
             <div className="space-y-4">
-              <div className="inline-flex items-center gap-3">
-                <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                  <span className="text-3xl font-bold">
+              <div className="inline-flex items-center gap-2 xs:gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+                <div className="w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 rounded-xl xs:rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                  <span className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
                     {username.charAt(0)}
                   </span>
                 </div>
                 <div>
-                  <h1 className="text-4xl font-bold">
-                    Welcome back, {username}
+                  <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
+                    {t("portal.welcome")}, {username}
                   </h1>
-                  <p className="text-blue-100 text-lg">
-                    Your financial journey continues here
+                  <p className="text-blue-100 text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl">
+                    {t("portal.journey")}
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-4 text-sm">
+              <div className="flex items-center gap-2 xs:gap-3 sm:gap-4 md:gap-5 lg:gap-6 text-xs xs:text-sm sm:text-sm md:text-base lg:text-lg">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span>Portfolio Active</span>
+                  <span>{t("portal.portfolio.active")}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                  <span>Market Open</span>
+                  <span>{t("portal.market.open")}</span>
                 </div>
               </div>
             </div>
@@ -186,7 +188,7 @@ export default function PortalDashboard() {
                 disabled={isLoading}
                 className="mt-2 px-4 py-2 bg-white/20 hover:bg-white/30 rounded-xl transition-all duration-200 disabled:opacity-50"
               >
-                {isLoading ? "🔄" : "🔄"} Refresh
+                {isLoading ? "🔄" : "🔄"} {t("portal.refresh")}
               </button>
             </div>
           </div>
@@ -231,13 +233,13 @@ export default function PortalDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300">
-                  Total Value
+                  {t("portal.total.value")}
                 </p>
                 <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
                   ${portfolioValue.toLocaleString()}
                 </p>
                 <p className="text-xs sm:text-sm text-green-600">
-                  +${(portfolioValue * 0.01).toFixed(0)} today
+                  +${(portfolioValue * 0.01).toFixed(0)} {t("portal.today")}
                 </p>
               </div>
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
@@ -252,13 +254,13 @@ export default function PortalDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300">
-                  Growth Rate
+                  {t("portal.growth.rate")}
                 </p>
                 <p className="text-xl sm:text-2xl font-bold text-blue-600">
                   +{growthRate.toFixed(1)}%
                 </p>
                 <p className="text-xs sm:text-sm text-blue-600">
-                  vs +8.2% benchmark
+                  {t("portal.benchmark")}
                 </p>
               </div>
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -273,13 +275,13 @@ export default function PortalDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300">
-                  Last Update
+                  {t("portal.last.update")}
                 </p>
                 <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
                   Today
                 </p>
                 <p className="text-xs sm:text-sm text-purple-600">
-                  Auto-updated every 4 hours
+                  {t("portal.auto.updated")}
                 </p>
               </div>
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
@@ -294,13 +296,13 @@ export default function PortalDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300">
-                  Risk Level
+                  {t("portal.risk.level")}
                 </p>
                 <p className="text-xl sm:text-2xl font-bold text-amber-600">
                   Low
                 </p>
                 <p className="text-xs sm:text-sm text-amber-600">
-                  Conservative strategy
+                  {t("portal.conservative")}
                 </p>
               </div>
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
@@ -312,7 +314,7 @@ export default function PortalDashboard() {
       </div>
 
       {/* Performance Metrics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 gap-2 xs:gap-3 sm:gap-4 md:gap-5 lg:gap-6">
         {performanceMetrics.map((metric, index) => (
           <div
             key={index}
@@ -341,24 +343,28 @@ export default function PortalDashboard() {
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
               <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
-                Portfolio Performance
+                {t("portal.performance.title")}
               </h2>
               <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
-                Track your investment growth over time
+                {t("portal.performance.subtitle")}
               </p>
             </div>
             <div className="flex gap-2">
-              {["overview", "detailed", "comparison"].map((tab) => (
+              {[
+                { id: "overview", label: t("portal.overview") },
+                { id: "detailed", label: t("portal.detailed") },
+                { id: "comparison", label: t("portal.comparison") }
+              ].map((tab) => (
                 <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
                   className={`px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
-                    activeTab === tab
+                    activeTab === tab.id
                       ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
                       : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
                   }`}
                 >
-                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  {tab.label}
                 </button>
               ))}
             </div>
@@ -369,8 +375,8 @@ export default function PortalDashboard() {
             <ChartPreview config={chartConfig} />
           </div>
           <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs sm:text-sm text-gray-500 dark:text-gray-400 gap-2 sm:gap-0">
-            <span>Data updated every 15 minutes</span>
-            <span>Source: Real-time market data</span>
+            <span>{t("portal.data.updated")}</span>
+            <span>{t("portal.data.source")}</span>
           </div>
         </CardContent>
       </Card>
@@ -381,14 +387,14 @@ export default function PortalDashboard() {
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
               <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
-                Latest Reports & Documents
+                {t("portal.reports.title")}
               </h2>
               <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
-                Your most recent investment reports and documents
+                {t("portal.reports.subtitle")}
               </p>
             </div>
             <button className="px-3 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm sm:text-base">
-              View All
+              {t("portal.view.all")}
             </button>
           </div>
         </CardHeader>
@@ -448,7 +454,7 @@ export default function PortalDashboard() {
       <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-white/20 dark:border-gray-700/50">
         <CardHeader className="border-b border-white/20 dark:border-gray-700/50 bg-gradient-to-r from-amber-50/50 to-orange-50/50 dark:from-amber-900/20 dark:to-orange-900/20 p-4 sm:p-6">
           <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
-            Recent Activities
+            {t("portal.activities.title")}
           </h2>
         </CardHeader>
         <CardContent className="p-4 sm:p-6">
@@ -482,10 +488,10 @@ export default function PortalDashboard() {
       <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-white/20 dark:border-gray-700/50">
         <CardHeader className="border-b border-white/20 dark:border-gray-700/50 bg-gradient-to-r from-purple-50/50 to-pink-50/50 dark:from-purple-900/20 dark:to-pink-900/20 p-4 sm:p-6">
           <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
-            Historical Performance
+            {t("portal.historical.title")}
           </h2>
           <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
-            View past performance and trends
+            {t("portal.historical.subtitle")}
           </p>
         </CardHeader>
         <CardContent className="p-4 sm:p-6">

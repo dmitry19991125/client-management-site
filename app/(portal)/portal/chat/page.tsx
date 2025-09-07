@@ -117,15 +117,15 @@ export default function PortalChat() {
   ];
 
   return (
-    <div className="px-4 sm:px-6 py-6 sm:py-8 space-y-6 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-slate-900 min-h-screen">
-      <div className="text-center space-y-3">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
+    <div className="px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 py-3 xs:py-4 sm:py-6 md:py-8 lg:py-10 space-y-3 xs:space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-slate-900 min-h-screen">
+      <div className="text-center space-y-2 xs:space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6">
+        <h1 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 dark:text-white">
           Premium Support Chat
         </h1>
-        <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg">
+        <p className="text-gray-600 dark:text-gray-300 text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl">
           Connect directly with our expert financial advisors
         </p>
-        <div className="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+        <div className="flex items-center justify-center gap-1 xs:gap-2 sm:gap-3 md:gap-4 lg:gap-5 text-xs xs:text-sm sm:text-sm md:text-base lg:text-lg text-gray-500 dark:text-gray-400">
           <div
             className={`w-2 h-2 rounded-full ${
               chatStatus === "online" ? "bg-green-500" : "bg-gray-400"
@@ -141,12 +141,12 @@ export default function PortalChat() {
 
       {/* Quick Questions */}
       <div className="max-w-[1440px] mx-auto">
-        <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
+        <div className="flex flex-wrap gap-1 xs:gap-2 sm:gap-3 md:gap-4 lg:gap-5 justify-center">
           {quickQuestions.map((question, index) => (
             <button
               key={index}
               onClick={() => handleQuickQuestion(question)}
-              className="px-3 sm:px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/30 dark:border-gray-600/50 rounded-full text-xs sm:text-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
+              className="px-2 xs:px-3 sm:px-4 md:px-5 lg:px-6 py-1 xs:py-1.5 sm:py-2 md:py-2.5 lg:py-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/30 dark:border-gray-600/50 rounded-full text-xs xs:text-sm sm:text-sm md:text-base lg:text-lg text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
             >
               {question}
             </button>

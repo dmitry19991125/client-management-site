@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useLanguage();
 
   const handleGoogleLogin = () => {
     setIsLoading(true);
@@ -32,10 +34,10 @@ export default function LoginPage() {
               <span className="text-2xl font-bold text-white">P</span>
             </div>
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-              Welcome Back
+              {t("login.welcome")}
             </h1>
             <p className="text-gray-600 dark:text-gray-300">
-              Sign in to your account
+              {t("login.subtitle")}
             </p>
           </div>
 
@@ -64,7 +66,7 @@ export default function LoginPage() {
                   d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                 />
               </svg>
-              Continue with Google
+{t("login.google")}
             </Button>
 
             <div className="relative">
@@ -73,7 +75,7 @@ export default function LoginPage() {
               </div>
               <div className="relative flex justify-center text-sm">
                 <span className="px-2 bg-transparent text-gray-500 dark:text-gray-400">
-                  Or
+                  {t("login.or")}
                 </span>
               </div>
             </div>
@@ -81,12 +83,12 @@ export default function LoginPage() {
             <div className="space-y-3">
               <input
                 type="email"
-                placeholder="Email address"
+                placeholder={t("login.email")}
                 className="w-full h-12 px-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
               />
               <input
                 type="password"
-                placeholder="Password"
+                placeholder={t("login.password")}
                 className="w-full h-12 px-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
               />
             </div>
@@ -99,10 +101,10 @@ export default function LoginPage() {
               {isLoading ? (
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Signing in...
+                  {t("login.signing")}
                 </div>
               ) : (
-                "Sign In"
+                t("login.signin")
               )}
             </Button>
           </div>
@@ -110,12 +112,12 @@ export default function LoginPage() {
           {/* Footer */}
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Don&apos;t have an account?{" "}
+              {t("login.noaccount")}{" "}
               <a
                 href="#"
                 className="text-blue-600 hover:text-blue-700 font-medium"
               >
-                Sign up
+                {t("login.signup")}
               </a>
             </p>
           </div>

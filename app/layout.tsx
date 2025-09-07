@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { ToastProvider } from "@/components/ui/ToastProvider";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +30,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900`}
       >
-        <ToastProvider>
-          <div className="mx-auto max-w-[1920px]">{children}</div>
-        </ToastProvider>
+        <LanguageProvider>
+          <ToastProvider>
+            <div className="mx-auto max-w-[1920px]">{children}</div>
+          </ToastProvider>
+        </LanguageProvider>
         <ThemeToggle />
       </body>
     </html>
