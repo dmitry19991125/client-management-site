@@ -92,7 +92,8 @@ export default function PortalLayout({
               </div>
             </div>
           </div>
-          <div className="flex sm:hidden items-center gap-1 xs:gap-2">
+          <div className="flex sm:hidden items-center gap-2">
+            <LanguageToggle />
             <MobileSidebar
               title={t("portal.title")}
               headerIcon={
@@ -101,47 +102,72 @@ export default function PortalLayout({
                 </div>
               }
             >
-              <nav className="p-3 space-y-1">
-                <a
-                  href="/portal"
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
-                  <span>📊</span>
-                  <span className="font-medium">{t("portal.dashboard")}</span>
-                </a>
-                <a
-                  href="/portal/chat"
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
-                  <span>💬</span>
-                  <span className="font-medium">{t("portal.chat")}</span>
-                </a>
-                <a
-                  href="/portal/payments"
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
-                  <span>💳</span>
-                  <span className="font-medium">{t("portal.payments")}</span>
-                </a>
-                <a
-                  href="/portal/referrals"
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
-                  <span>🎯</span>
-                  <span className="font-medium">{t("portal.referrals")}</span>
-                </a>
-              </nav>
-              <div className="mt-auto border-t border-gray-200 dark:border-gray-800 p-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 via-blue-600 to-purple-600 flex items-center justify-center">
-                    <span className="text-white text-sm font-bold">JD</span>
+              <div className="z-30 fixed w-full bg-[#1c1b3b]">
+                <nav className="p-4 space-y-2 ">
+                  <a
+                    href="/portal"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/20 dark:hover:to-purple-900/20 transition-all duration-200 group"
+                  >
+                    <span className="text-lg group-hover:scale-110 transition-transform">
+                      📊
+                    </span>
+                    <span className="font-medium">{t("portal.dashboard")}</span>
+                  </a>
+                  <a
+                    href="/portal/chat"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-green-50 hover:to-blue-50 dark:hover:from-green-900/20 dark:hover:to-blue-900/20 transition-all duration-200 group"
+                  >
+                    <span className="text-lg group-hover:scale-110 transition-transform">
+                      💬
+                    </span>
+                    <span className="font-medium">{t("portal.chat")}</span>
+                  </a>
+                  <a
+                    href="/portal/payments"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-teal-50 dark:hover:from-emerald-900/20 dark:hover:to-teal-900/20 transition-all duration-200 group"
+                  >
+                    <span className="text-lg group-hover:scale-110 transition-transform">
+                      💳
+                    </span>
+                    <span className="font-medium">{t("portal.payments")}</span>
+                  </a>
+                  <a
+                    href="/portal/referrals"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 transition-all duration-200 group"
+                  >
+                    <span className="text-lg group-hover:scale-110 transition-transform">
+                      🎯
+                    </span>
+                    <span className="font-medium">{t("portal.referrals")}</span>
+                  </a>
+                </nav>
+
+                {/* Language Toggle Section */}
+                <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                      {t("common.language")}
+                    </span>
+                    <LanguageToggle />
                   </div>
-                  <div>
-                    <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                      John Doe
+                </div>
+
+                {/* User Profile Section */}
+                <div className="mt-auto border-t border-gray-200 dark:border-gray-700 p-4">
+                  <div className="flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-blue-50/50 to-purple-50/50 dark:from-blue-900/20 dark:to-purple-900/20">
+                    <div className="relative">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 via-blue-600 to-purple-600 flex items-center justify-center shadow-lg">
+                        <span className="text-white text-sm font-bold">JD</span>
+                      </div>
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-900"></div>
                     </div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">
-                      {t("portal.user.premium")}
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                        John Doe
+                      </div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">
+                        {t("portal.user.premium")}
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -38,61 +38,63 @@ export default function AdminLayout({
                 </div>
               }
             >
-              <nav className="p-3 space-y-1">
-                <a
-                  href="/admin"
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
-                  <span>📊</span>
-                  <span className="font-medium">{t("admin.dashboard")}</span>
-                </a>
-                <a
-                  href="/admin/messages"
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
-                  <span>💬</span>
-                  <span className="font-medium">{t("admin.messages")}</span>
-                </a>
-                <a
-                  href="/admin/customers"
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
-                  <span>👥</span>
-                  <span className="font-medium">{t("admin.customers")}</span>
-                </a>
-                <a
-                  href="/admin/uploads"
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
-                  <span>📁</span>
-                  <span className="font-medium">{t("admin.uploads")}</span>
-                </a>
-                <a
-                  href="/admin/payments"
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
-                  <span>💳</span>
-                  <span className="font-medium">{t("admin.payments")}</span>
-                </a>
-                <a
-                  href="/admin/audit"
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
-                  <span>📋</span>
-                  <span className="font-medium">{t("admin.audit")}</span>
-                </a>
-              </nav>
-              <div className="mt-auto border-t border-gray-200 dark:border-gray-800 p-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-blue-600 flex items-center justify-center">
-                    <span className="text-white text-xs font-medium">AD</span>
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium text-gray-900 dark:text-white">
-                      Admin User
+              <div className="bg-[#1c1b3b] fixed w-full">
+                <nav className="p-3 space-y-1">
+                  <a
+                    href="/admin"
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  >
+                    <span>📊</span>
+                    <span className="font-medium">{t("admin.dashboard")}</span>
+                  </a>
+                  <a
+                    href="/admin/messages"
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  >
+                    <span>💬</span>
+                    <span className="font-medium">{t("admin.messages")}</span>
+                  </a>
+                  <a
+                    href="/admin/customers"
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  >
+                    <span>👥</span>
+                    <span className="font-medium">{t("admin.customers")}</span>
+                  </a>
+                  <a
+                    href="/admin/uploads"
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  >
+                    <span>📁</span>
+                    <span className="font-medium">{t("admin.uploads")}</span>
+                  </a>
+                  <a
+                    href="/admin/payments"
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  >
+                    <span>💳</span>
+                    <span className="font-medium">{t("admin.payments")}</span>
+                  </a>
+                  <a
+                    href="/admin/audit"
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  >
+                    <span>📋</span>
+                    <span className="font-medium">{t("admin.audit")}</span>
+                  </a>
+                </nav>
+                <div className="mt-auto border-t border-gray-200 dark:border-gray-800 p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-blue-600 flex items-center justify-center">
+                      <span className="text-white text-xs font-medium">AD</span>
                     </div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">
-                      {t("admin.user.email")}
+                    <div>
+                      <div className="text-sm font-medium text-gray-900 dark:text-white">
+                        Admin User
+                      </div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">
+                        {t("admin.user.email")}
+                      </div>
                     </div>
                   </div>
                 </div>
